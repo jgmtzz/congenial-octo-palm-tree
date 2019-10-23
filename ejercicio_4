@@ -1,0 +1,10 @@
+Ruta="ods/legacy/"
+Archivo="sscp.txt"
+Archivoi="sscpd.txt"
+RutaS="ods/deliver/"
+ArchivoS="jgmtzz_sscp.trn"
+echo $Ruta$Archivo
+cat $Ruta$Archivo|awk -F: '{printf("%s \n", substr($1,1,8)"|"substr($1,9,2)"|"substr($1,11,10)"|"substr($1,21,4)"|"substr($1,25,2)"|"substr($1,27,2
+)"|"substr($1,29,2)"|"substr($1,31,1)"|"substr($1,32,9)"|"substr($1,41,10)"|"substr($1,51,1)"|"substr($1,52,1)"|"substr($1,53,1)"|"substr($1,54,10)
+"|"substr($1,64,10)"|"substr($1,74,10) )}' > $Ruta$Archivoi
+cat $Ruta$Archivoi |awk -F"|" '{print $1"#"$2"#"$3"#"$4"#"$5"#"$6"#"$7"#"$8"#"$9"#"$10"#"$11"#"$12"#"$13"#"$14"#"$15"#"$16 }' > $RutaS$ArchivoS
