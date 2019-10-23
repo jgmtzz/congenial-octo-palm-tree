@@ -1,0 +1,9 @@
+Ruta="ods/legacy/"
+Archivo="sscp.txt"
+Archivoi="sscpd.txt"
+RutaS="ods/deliver/"
+ArchivoS1="jgmtzz_sscp.trn2"
+ArchivoS2="jgmtzz_sscp.trn3"
+echo $Ruta$Archivo
+cat $Ruta$Archivoi |awk -F"|" '{print $1"#"$2"#"$3"#"$4"#"$5 }' > $RutaS$ArchivoS1
+cat $Ruta$Archivoi |awk -F"|" '{print $6"#"$7"#"$8"#"$9"#"$10 }' > $RutaS$ArchivoS2
