@@ -1,0 +1,21 @@
+Ruta="ods/legacy/"
+FECHA=`date "+%Y-%m-%d"`
+Archivo="sscp.txt"
+Archivoi="sscpd.txt"
+RutaS="ods/deliver/"
+ArchivoS1="jgmtzz_sscp.trn2"
+ArchivoS2="jgmtzz_sscp.trn3"
+
+#echo $Ruta$Archio
+for grpo in `awk -F"|" '{print $6}' $Ruta$Archivoi|sort|uniq`
+do
+#cat $Ruta$Archivoi 
+echo $grpo
+  awk -F"|" -v GRPO=$grpo -v FECHA=$FECHA 'BEGIN{contador=1} {
+      if ($6=GRPO) {
+          print contador "|" FECHA "|" $1 "|"$2"|"$3"|"$4 "|"$5"|"$6"|" $1 "|"$2"|"$3"|"$4 "|"$5"|"$6
+
+           contador=contador+1
+        } 
+      }' $Ruta$Archivoi > grupo_$grpo.txt
+done
