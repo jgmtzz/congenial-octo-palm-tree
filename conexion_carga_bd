@@ -1,0 +1,24 @@
+Ruta="/ods/legacy/"
+Archivo="sscp.txt"
+Archivoi="sscpd.txt"
+RutaS="/ods/deliver/"
+FECHA=`date "+%Y-%m-%d"`
+CNNX="system/oracle@orcl"
+INSERT="INSERT INTO JGMTZZ_SSCP(CVE_PATRON;
+CVE_MODALIDAD;
+FEC_ACT;
+CONSEC;
+CVE_DIVISION;
+CVE_GPO;
+CVE_ACT_ECO;
+CVE_CLASE;
+PRIMA;
+FEC_CAMB_CLA;
+SAL_BAS;
+MC_TP_MOVTO;
+CAUSA;
+FEC_INI;
+FEC_FIN_PRIMA;
+FEC_INI_PRIMA) VALUES('"
+
+awk -F:  -v INS="$INSERT" '{printf("%s%s%c)@ \n",INS,substr($1,1,8)"'',"substr($1,9,2)","substr($1,11,10)","substr($1,21,4)","substr($1,25,2)","substr($1,27,2)","substr($1,29,2)","substr($1,31,1)","substr($1,32,9)","substr($1,41,10)","substr($1,51,1)","substr($1,52,1)","substr($1,53,1)","substr($1,54,10)","substr($1,64,10)","substr($1,74,10),39)}END{print "commit@}"}' $Ruta$Archivo|sed "s/,/\',\'/g" |sed "s/;/,/g " |sed "s/@/;/g "|sqlplus $CNNX #> $Ruta$Archivoi
