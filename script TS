@@ -1,0 +1,3 @@
+Ts=`date "+%Y%m%d%H%M%S"`
+sqlldr system/oracle@orcl control="scripts/ctl/AS_Loader_02.ctl" log=scripts
+/ctl/AS_Loader_02_$Ts.log bad=  $Ruta$Archivo |sed "s/,/\',\'/g" |sed "s/;/,/g " |sed "s/@/;/g" | sed 's/\"//g'scripts/ctl/AS_Loader_02_$Ts.bad
