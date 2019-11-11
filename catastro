@@ -1,0 +1,38 @@
+Ruta="/ods/legacy/"
+Archivo="Catastro1.txt"
+Rutas="/ods/deliver/"
+FECHA=`date "+%Y-%m-%d"`
+CNNX="system/oracle@orcl"
+INSERT="INSERT INTO JMLP_CATASTRO(CONSEC;
+FECHA;
+MUNI;
+ZONA;
+MZA;
+LOTE;
+EDIF;
+DEPTO;
+NOMBRE;
+CODCALLE;
+NUMEXT;
+CP;
+ENTCALLE;
+YCALLE;
+NINT) VALUES ('"
+let conta=1
+
+
+awk -F"," -v INS="$INSERT" -v FECHA=$FECHA 'BEGIN{contador=1} {
+                       {printf("%s%d,%s,%s%c)@ \n",INS, contador, FECHA, $1","$2","$3","$4","$5","$6","$7","$8","$9","$10","$11","$12","$13,39)
+                         contador=contador+1
+                        }} END {print "commit@}"}'  $Ruta$Archivo |sed "s/,/\',\'/g" |sed "s/;/,/g " |sed "s/@/;/g" | sed 's/\"//g'
+                      # > salCatastro7.txt
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
