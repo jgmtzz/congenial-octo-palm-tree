@@ -1,0 +1,4 @@
+awk -F"|" '{print $3}'  BDEF2018_2.csv | sed 's/\"//g' | cut -c 11 | sort |uniq -c
+      1 
+     48 H
+     51 M
